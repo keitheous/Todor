@@ -5,11 +5,11 @@
 .row
   .form-group
     .col-sm-7
-      %input.form-control#new-task{placeholder: 'Do Laundry...'}
+      %input.form-control#new-task{placeholder: 'task: Do Laundry...'}
     .col-sm-2
-      %input.form-control#new-participant{placeholder: 'Kim Kardashian'}
+      %input.form-control#new-participant{placeholder: 'by: -Kim Kardashian'}
     .col-sm-2
-      %input.form-control#new-date{disabled: true}
+      %input.form-control#new-date{disabled: true, placeholder: 'date: 31/2/2012'}
     .col-sm-1
       %button.btn.btn-info#submit-new-task
         Submit
@@ -26,6 +26,7 @@
           %td.col-sm-8
             = todo.task
           %td.col-sm-2
+            by:
             = todo.participant
           %td.col-sm-2
             = todo.due_date

@@ -24,9 +24,8 @@ $('document').ready(function(){
 
       var taskParam = {task:'', participant:''};
       taskParam['task'] = $('#new-task').val();
-      //  participant param
+      taskParam['participant'] = $('#new-participant').val();
       // due date param
-
       // ajax request to hit POST create
       $.ajax({
          url: '/todos',
