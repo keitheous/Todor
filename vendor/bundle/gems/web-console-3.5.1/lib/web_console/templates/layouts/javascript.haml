@@ -1,0 +1,5 @@
+%script{"data-template" => "#{@template}", :type => "text/javascript"}
+  :cdata
+    (function() {
+    \#{yield}
+    }).call(this);

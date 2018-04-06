@@ -1,0 +1,11 @@
+%tr.route_row{"data-helper" => "path"}
+  %td{"data-route-name" => "#{route[:name]}"}
+    - if route[:name].present?
+      = route[:name]
+      %span.helper _path
+  %td
+    = route[:verb]
+  %td{"data-route-path" => "#{route[:path]}"}
+    = route[:path]
+  %td
+    = simple_format route[:reqs]
