@@ -1,25 +1,45 @@
 %p#notice= notice
-%h1 TODORS
+%h2{style: 'text-align: center;'}
+  TODOR
 %br/
-%input#new-task
-%button#submit-new-task
-  Submit
-%br
-%br
+.row
+  .form-group
+    .col-sm-7
+      %input.form-control#new-task{placeholder: 'Do Laundry...'}
+    .col-sm-2
+      %input.form-control#new-participant{placeholder: 'Kim Kardashian'}
+    .col-sm-2
+      %input.form-control#new-date{disabled: true}
+    .col-sm-1
+      %button.btn.btn-info#submit-new-task
+        Submit
 %br
 %table
-  %thead
-    %tr
-      %th Task
-      %th Due date
-      %th Participant
-      %th{:colspan => "3"}
+  %h3{style: 'text-decoration: underline;'}
+    to do
   %tbody
     - @todos.each do |todo|
       %tr
-        %td= todo.task
-        %td= todo.due_date
-        %td= todo.participant
-        -# %td= link_to 'Show', todo
-        -# %td= link_to 'Edit', edit_todo_path(todo)
-        -# %td= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' }
+        %td.col-sm-1
+          x
+        %td.col-sm-8
+          = todo.task
+        %td.col-sm-2
+          = todo.participant
+        %td.col-sm-2
+          = todo.due_date
+%br
+%table
+  %h3{style: 'text-decoration: underline;'}
+    done
+  %tbody
+    - @todos.each do |todo|
+      %tr
+        %td.col-sm-1
+          -# %td= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' }
+        %td.col-sm-8
+          = todo.task
+        %td.col-sm-2
+          = todo.participant
+        %td.col-sm-2
+          = todo.due_date
