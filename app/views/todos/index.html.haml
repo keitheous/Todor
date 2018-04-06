@@ -14,32 +14,35 @@
       %button.btn.btn-info#submit-new-task
         Submit
 %br
-%table
-  %h3{style: 'text-decoration: underline;'}
-    to do
-  %tbody
-    - @todos.each do |todo|
-      %tr
-        %td.col-sm-1
-          x
-        %td.col-sm-8
-          = todo.task
-        %td.col-sm-2
-          = todo.participant
-        %td.col-sm-2
-          = todo.due_date
+- if @todos.size != 0
+  %table
+    %h3{style: 'text-decoration: underline;'}
+      to do
+    %tbody
+      - @todos.each do |todo|
+        %tr
+          %td.col-sm-1.check
+            %input.form-check-input{type: 'checkbox', id: "#{todo.id}"}
+          %td.col-sm-8
+            = todo.task
+          %td.col-sm-2
+            = todo.participant
+          %td.col-sm-2
+            = todo.due_date
 %br
-%table
-  %h3{style: 'text-decoration: underline;'}
-    done
-  %tbody
-    - @todos.each do |todo|
-      %tr
-        %td.col-sm-1
-          -# %td= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' }
-        %td.col-sm-8
-          = todo.task
-        %td.col-sm-2
-          = todo.participant
-        %td.col-sm-2
-          = todo.due_date
+- if @done.size != 0
+  %table
+    %h3{style: 'text-decoration: underline;'}
+      done
+    %tbody
+      - @done.each do |todo|
+        %tr
+          %td.col-sm-1.bin
+            %span.fa.fa-trash{id: "#{todo.id}"}
+            -# %td= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' }
+          %td.col-sm-8{style: 'text-decoration: line-through;'}
+            = todo.task
+          %td.col-sm-2
+            = todo.participant
+          %td.col-sm-2
+            = todo.due_date

@@ -17,22 +17,58 @@
 $('document').ready(function(){
   console.log('Hello! Thanks for inspecting!');
 
+  // creating new tasks
   $('#submit-new-task').on('click', function(){
-    console.log('creating new task');
 
-    console.log('obtaining input');
-    var taskParam = {task:'', participant:''};
-    taskParam['task'] = $('#new-task').val();
+    if($('#new-task').val().length !== 0){
 
+      var taskParam = {task:'', participant:''};
+      taskParam['task'] = $('#new-task').val();
+      //  participant param
+      // due date param
 
-    console.log('requesting ajax request');
+      // ajax request to hit POST create
+      $.ajax({
+         url: '/todos',
+         type: 'POST',
+         data: {params: taskParam},
+         success: function(response) {
+           location.reload();
+         }
+      });
+
+    }
+  })
+
+  // complete a task
+  $('.check').on('click', function(){
+    console.log('checking ' + $(this).children().attr('id'));
+
+    var toCheckId = $(this).children().attr('id');
+    // ajax request to hit DELETE destroy
     $.ajax({
-       url: '/todos',
-       type: 'POST',
-       data: {params: taskParam},
+       url: '/todos/'+ toCheckId,
+       type: 'PUT',
+       data: {id: toCheckId},
        success: function(response) {
          location.reload();
        }
     });
   })
+
+  // deleting old tasks
+  $('.bin').on('click', function(){
+    console.log('deleting ' + $(this).children().attr('id'));
+
+    var toDeleteId = $(this).children().attr('id');
+    // ajax request to hit DELETE destroy
+    $.ajax({
+       url: '/todos/'+ toDeleteId,
+       type: 'DELETE',
+       data: {id: toDeleteId},
+       success: function(response) {
+         location.reload();
+       }
+    });
+  });
 });

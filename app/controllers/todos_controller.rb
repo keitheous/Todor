@@ -1,16 +1,7 @@
 class TodosController < ApplicationController
   def index
-    @todos = Todo.all
-  end
-
-  def show
-  end
-
-  def new
-    @todo = Todo.new
-  end
-
-  def edit
+    @todos = Todo.active
+    @done = Todo.inactive
   end
 
   def create
@@ -18,12 +9,24 @@ class TodosController < ApplicationController
     @todo.save
   end
 
+  def update
+    task = Todo.find_by(id: params[:id])
+
+    if task # todo:: move this into model as a boolean toggle
+      task.active = !task.active
+      task.save
+    end
+  end
+
   def destroy
-    @todo.destroy
+    task = Todo.find_by(id: params[:id])
+    task.delete if task
   end
 
   private
-    def todo_params
-      params.require(:params).permit(:task, :participant)
-    end
+  # todo:: def find_task find by @task before_action - destroy and update
+
+  def todo_params
+    params.require(:params).permit(:task, :participant)
+  end
 end
