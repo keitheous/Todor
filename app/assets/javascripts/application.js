@@ -13,3 +13,26 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+
+$('document').ready(function(){
+  console.log('Hello! Thanks for inspecting!');
+
+  $('#submit-new-task').on('click', function(){
+    console.log('creating new task');
+
+    console.log('obtaining input');
+    var taskParam = {task:'', participant:''};
+    taskParam['task'] = $('#new-task').val();
+
+
+    console.log('requesting ajax request');
+    $.ajax({
+       url: '/todos',
+       type: 'POST',
+       data: {params: taskParam},
+       success: function(response) {
+         location.reload();
+       }
+    });
+  })
+});

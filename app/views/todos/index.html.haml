@@ -1,5 +1,12 @@
 %p#notice= notice
-%h1 Todos
+%h1 TODORS
+%br/
+%input#new-task
+%button#submit-new-task
+  Submit
+%br
+%br
+%br
 %table
   %thead
     %tr
@@ -13,8 +20,6 @@
         %td= todo.task
         %td= todo.due_date
         %td= todo.participant
-        %td= link_to 'Show', todo
-        %td= link_to 'Edit', edit_todo_path(todo)
-        %td= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' }
-%br/
-= link_to 'New Todo', new_todo_path
+        -# %td= link_to 'Show', todo
+        -# %td= link_to 'Edit', edit_todo_path(todo)
+        -# %td= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' }

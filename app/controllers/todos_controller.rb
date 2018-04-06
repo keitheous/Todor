@@ -25,16 +25,17 @@ class TodosController < ApplicationController
   # POST /todos.json
   def create
     @todo = Todo.new(todo_params)
+    @todo.save
 
-    respond_to do |format|
-      if @todo.save
-        format.html { redirect_to @todo, notice: 'Todo was successfully created.' }
-        format.json { render :show, status: :created, location: @todo }
-      else
-        format.html { render :new }
-        format.json { render json: @todo.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @todo.save
+    #     format.html { redirect_to @todo, notice: 'Todo was successfully created.' }
+    #     format.json { render :show, status: :created, location: @todo }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @todo.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /todos/1
@@ -69,6 +70,7 @@ class TodosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def todo_params
-      params.require(:todo).permit(:task, :due_date, :participant)
+      # params.require(:todo).permit(:task, :due_date, :participant)
+      params.require(:params).permit(:task, :participant  )
     end
 end
